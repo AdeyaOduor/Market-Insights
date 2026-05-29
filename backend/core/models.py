@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-import uuid
 
 class Country(models.Model):
     COUNTRY_CHOICES = [
@@ -12,8 +11,8 @@ class Country(models.Model):
     
     code = models.CharField(max_length=2, choices=COUNTRY_CHOICES, unique=True)
     name = models.CharField(max_length=50)
-    currency = models.CharField(max_length=3)
-    timezone = models.CharField(max_length=50)
+    currency = models.CharField(max_length=3, default='KES')
+    timezone = models.CharField(max_length=50, default='Africa/Nairobi')
     
     def __str__(self):
         return self.name
@@ -37,11 +36,11 @@ class Brand(models.Model):
 class SKU(models.Model):
     sku_code = models.CharField(max_length=50, unique=True)
     name = models.CharField(max_length=200)
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='skus')
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='skus', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
-    pack_size = models.CharField(max_length=50)
+    pack_size = models.CharField(max_length=50, blank=True)
     
     def __str__(self):
         return f"{self.sku_code} - {self.name}"
@@ -80,7 +79,7 @@ class Competitor(models.Model):
     name = models.CharField(max_length=100)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     website = models.URLField(blank=True)
-    market_share = models.DecimalField(max_digits=5, decimal_places=2, null=True)
+    market_share = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     
     def __str__(self):
         return self.name
@@ -110,12 +109,12 @@ class PricingHistory(models.Model):
 class ConsumerInsight(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    insight_type = models.CharField(max_length=100)  # e.g., 'preference', 'behavior', 'trend'
+    insight_type = models.CharField(max_length=100)
     title = models.CharField(max_length=200)
     description = models.TextField()
     sentiment_score = models.FloatField(null=True, blank=True)
     date_collected = models.DateField()
-    source = models.CharField(max_length=100)  # e.g., 'survey', 'social_media', 'sales_data'
+    source = models.CharField(max_length=100)
     
     def __str__(self):
         return f"{self.title} - {self.country.name}"
@@ -149,7 +148,7 @@ class Vendor(models.Model):
     contact_person = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
-    rating = models.DecimalField(max_digits=3, decimal_places=2, null=True)
+    rating = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     
     def __str__(self):
         return self.name
@@ -158,7 +157,7 @@ class CategoryGap(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     gap_description = models.TextField()
-    opportunity_score = models.IntegerField()  # 1-100
+    opportunity_score = models.IntegerField()
     potential_revenue = models.DecimalField(max_digits=15, decimal_places=2)
     recommended_action = models.TextField()
     identified_date = models.DateField(auto_now_add=True)
