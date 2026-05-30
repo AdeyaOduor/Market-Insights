@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Insights Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 3rem 0;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .card .endpoint {
+            background: #f5f5f5;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #764ba2;
+            word-break: break-all;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        .status.online {
+            background: #10b981;
+            color: white;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            color: white;
+            opacity: 0.8;
+        }
+        
+        .api-info {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .api-info code {
+            background: rgba(0,0,0,0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Market Insights Platform</h1>
+            <p>Regional Intelligence for East Africa (Kenya, Uganda, Rwanda)</p>
+            <div class="api-info">
+                <span>📡 API Status: </span><code>Online</code>
+                <span style="margin-left: 1rem;">🔧 Version: </span><code>1.0.0</code>
+            </div>
+        </div>
+        
+        <div class="card-container">
+            <div class="card">
+                <h3>📊 Unified Dashboard</h3>
+                <p>Consolidated view of SKU and channel performance across all three countries.</p>
+                <div class="endpoint">GET /api/dashboard/unified_dashboard/</div>
+                <div class="status online">Available</div>
+            </div>
+            
+            <div class="card">
+                <h3>📈 Category Trends</h3>
+                <p>Track category trends and growth patterns across Kenya, Uganda, and Rwanda.</p>
+                <div class="endpoint">GET /api/dashboard/category_trends/</div>
+                <div class="status online">Available</div>
+            </div>
+            
+            <div class="card">
+                <h3>💰 Pricing Intelligence</h3>
+                <p>Competitive pricing analysis and benchmarking against competitors.</p>
+                <div class="endpoint">GET /api/dashboard/pricing_intelligence/</div>
+                <div class="status online">Available</div>
+            </div>
+            
+            <div class="card">
+                <h3>👥 Consumer Insights</h3>
+                <p>Consumer behavior analysis and sentiment tracking.</p>
+                <div class="endpoint">GET /api/dashboard/consumer_insights/</div>
+                <div class="status online">Available</div>
+            </div>
+            
+            <div class="card">
+                <h3>🎯 Market Opportunities</h3>
+                <p>Identify category gaps and growth opportunities.</p>
+                <div class="endpoint">GET /api/dashboard/market_opportunities/</div>
+                <div class="status online">Available</div>
+            </div>
+            
+            <div class="card">
+                <h3>🤝 Vendor Sourcing</h3>
+                <p>Data-backed vendor recommendations and sourcing gaps.</p>
+                <div class="endpoint">GET /api/dashboard/vendor_sourcing/</div>
+                <div class="status online">Available</div>
+            </div>
+            
+            <div class="card">
+                <h3>🏢 Competitor Mapping</h3>
+                <p>Track competitor market share and positioning.</p>
+                <div class="endpoint">GET /api/dashboard/competitors/</div>
+                <div class="status online">Available</div>
+            </div>
+            
+            <div class="card">
+                <h3>❤️ Health Check</h3>
+                <p>Verify API and system health status.</p>
+                <div class="endpoint">GET /api/dashboard/health_check/</div>
+                <div class="status online">Available</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Market Insights Platform | Regional Intelligence for East Africa</p>
+            <p style="font-size: 0.85rem; margin-top: 0.5rem;">
+                🔐 Admin Panel: <a href="/admin/" style="color: white; text-decoration: underline;">/admin/</a>
+                &nbsp;|&nbsp;
+                📝 API Token: <a href="/api/token/" style="color: white; text-decoration: underline;">/api/token/</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-refresh status every 30 seconds
+        setInterval(async () => {
+            try {
+                const response = await fetch('/api/dashboard/health_check/');
+                const data = await response.json();
+                console.log('API Status:', data);
+            } catch (error) {
+                console.error('API Health Check Failed:', error);
+            }
+        }, 30000);
+    </script>
+</body>
+</html>
