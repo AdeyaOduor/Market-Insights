@@ -1,7 +1,13 @@
 # Market-Insights
 
 cd backend
-source venv/bin/activate
+
+# On Linux: 
+source venv/bin/activate 
+# On Windows: 
+venv\Scripts\activate
+
+pip install -r requirements.txt
 
 sudo -u postgres psql
 postgres=# sudo systemctl start postgresql
