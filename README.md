@@ -43,8 +43,31 @@ P@ssw0rd 1980
 python3 manage.py runserver
 
 Django version 5.2.14, using settings 'market_insights.settings'
-Starting development server at http://127.0.0.1:8000/adeya
+Starting development server at     
+
+    http://127.0.0.1:8000/ - Beautiful dashboard homepage
+
+    http://127.0.0.1:8000/api/ - API index
+
+    http://127.0.0.1:8000/admin/ - Admin panel
+
+    http://127.0.0.1:8000/api/dashboard/health_check/ - Health check endpoint
+
+    http://127.0.0.1:8000/api/dashboard/unified_dashboard/ - Dashboard data
 Quit the server with CONTROL-C.
+
+# Clear browser cache or try incognito mode
+# Restart Django server
+python3 manage.py runserver
+
+# Check if templates directory is in the right place
+ls -la templates/
+
+# Verify settings have TEMPLATES configured correctly
+python3 manage.py shell -c "from django.conf import settings; print(settings.TEMPLATES)"
+
+# Check URL patterns
+python3 manage.py show_urls 2>/dev/null || python3 -c "import django; django.setup(); from django.urls import get_resolver; print(get_resolver().url_patterns)"
 
 ### Frontend (in new terminal)
 cd frontend
