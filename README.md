@@ -54,6 +54,7 @@ npm start
 ### Celery (for background tasks)
 celery -A market_insights worker -l info
 
+# Production Deployment
 ### Set environment variables
 export DB_PASSWORD=your_secure_password
 export DJANGO_SECRET_KEY=your_secret_key
@@ -68,7 +69,9 @@ docker-compose exec backend python manage.py createsuperuser
 ### Load initial data
 docker-compose exec backend python manage.py loaddata initial_data.json
 
-### yaml || CI/CD Pipeline (GitHub Actions example)
+
+# CI/CD Pipeline (GitHub Actions example)
+### yaml 
 name: Deploy to Production
 
 on:
