@@ -45,3 +45,25 @@ python3 manage.py runserver
 Django version 5.2.14, using settings 'market_insights.settings'
 Starting development server at http://127.0.0.1:8000/adeya
 Quit the server with CONTROL-C.
+
+# Frontend (in new terminal)
+cd frontend
+npm install
+npm start
+
+# Celery (for background tasks)
+celery -A market_insights worker -l info
+
+# Set environment variables
+export DB_PASSWORD=your_secure_password
+export DJANGO_SECRET_KEY=your_secret_key
+
+# Build and deploy with Docker
+docker-compose -f docker-compose.yml up -d --build
+
+# Initialize database
+docker-compose exec backend python manage.py migrate
+docker-compose exec backend python manage.py createsuperuser
+
+# Load initial data
+docker-compose exec backend python manage.py loaddata initial_data.json
