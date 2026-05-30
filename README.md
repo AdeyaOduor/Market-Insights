@@ -35,3 +35,7 @@ adeyadavid@gmail.com
 P@ssw0rd 1980
 
 python3 manage.py runserver
+
+Django version 5.2.14, using settings 'market_insights.settings'
+Starting development server at http://127.0.0.1:8000/adeya
+Quit the server with CONTROL-C.
