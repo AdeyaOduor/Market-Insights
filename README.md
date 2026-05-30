@@ -33,3 +33,5 @@ python3 manage.py createsuperuser
 adeya
 adeyadavid@gmail.com
 P@ssw0rd 1980
+
+python3 manage.py runserver
