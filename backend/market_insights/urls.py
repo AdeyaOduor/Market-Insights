@@ -2,9 +2,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.decorators import api_view
+
+def home_page(request):
+    """Serve the home page"""
+    return render(request, 'index.html')
 
 @api_view(['GET'])
 def api_root(request):
@@ -13,8 +18,9 @@ def api_root(request):
         'message': 'Welcome to Market Insights Platform API',
         'version': '1.0.0',
         'endpoints': {
-            'api_root': '/',
+            'web_interface': '/',
             'admin_panel': '/admin/',
+            'api_documentation': '/api/',
             'api_endpoints': {
                 'dashboard': '/api/dashboard/',
                 'auth': {
@@ -33,12 +39,13 @@ def api_root(request):
                 }
             }
         },
-        'documentation': 'For more information, visit /admin/ or check the API documentation'
+        'documentation': 'For more information, visit the admin panel or check the API documentation'
     })
 
 urlpatterns = [
-    # Root endpoint
-    path('', api_root, name='api_root'),
+    # Root endpoint - serve HTML page
+    path('', home_page, name='home'),
+    path('api/root/', api_root, name='api_root'),
     
     # Admin panel
     path('admin/', admin.site.urls),
